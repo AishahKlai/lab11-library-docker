@@ -2,7 +2,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.awt.print.Book;
+import com.example.demo.entity.Book;
 import java.util.ArrayList;
 import java.util.List;
 

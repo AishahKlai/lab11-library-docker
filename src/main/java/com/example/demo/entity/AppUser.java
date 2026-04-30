@@ -20,7 +20,7 @@ public class AppUser {
 
     private String email;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private UserProfile profile;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)

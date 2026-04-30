@@ -11,8 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {
+
     private final AppUserRepository userRepository;
-    public UserResponse createUser(UserRequest request){
+
+    public UserResponse createUser(UserRequest request) {
         AppUser user = AppUser.builder()
                 .fullName(request.getFullName())
                 .email(request.getEmail())
@@ -27,7 +29,9 @@ public class UserService {
         user.setProfile(profile);
 
         AppUser saved = userRepository.save(user);
+
         log.info("User created with id: {}", saved.getId());
+
         return UserResponse.builder()
                 .id(saved.getId())
                 .fullName(saved.getFullName())
