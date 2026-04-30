@@ -15,7 +15,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse crateUser(@Valid @RequestBody UserRequest request){
-        return UserService.crateUser(request);
+    public UserResponse createUser(@Valid @RequestBody UserRequest request) {
+        return userService.createUser(request);
     }
 }

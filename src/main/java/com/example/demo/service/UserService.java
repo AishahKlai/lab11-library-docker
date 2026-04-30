@@ -6,12 +6,13 @@ import com.example.demo.entity.UserProfile;
 import com.example.demo.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
     private final AppUserRepository userRepository;
-    public static UserResponse crateUser(UserRequest request){
+    public UserResponse createUser(UserRequest request){
         AppUser user = AppUser.builder()
                 .fullName(request.getFullName())
                 .email(request.getEmail())
