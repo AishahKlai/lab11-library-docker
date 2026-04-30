@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16
+    container_name: lab11-postgres
+    environment:
+      POSTGRES_DB: lab11db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - lab11_db_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: lab11-app
+    depends_on:
+      - db
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/lab11db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    ports:
+      - "8080:8080"
+
+volumes:
+  lab11_db_data:
