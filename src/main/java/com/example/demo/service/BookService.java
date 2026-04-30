@@ -10,9 +10,10 @@ import com.example.demo.repository.CategoryRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BookService {
     private final BookRepository bookRepository;
     private final CategoryRepository categoryRepository;
@@ -29,7 +30,7 @@ public class BookService {
                 .build();
 
         Book saved =bookRepository.save(book);
-
+        log.info("Book created with id: {}", saved.getId());
         return BookResponse.builder()
                 .id(saved.getId())
                 .title(saved.getTitle())

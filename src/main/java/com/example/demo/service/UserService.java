@@ -27,7 +27,7 @@ public class UserService {
         user.setProfile(profile);
 
         AppUser saved = userRepository.save(user);
-
+        log.info("User created with id: {}", saved.getId());
         return UserResponse.builder()
                 .id(saved.getId())
                 .fullName(saved.getFullName())
