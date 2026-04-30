@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
     private final AppUserRepository userRepository;
-    public UserResponse crateUser(UserRequest request){
+    public static UserResponse crateUser(UserRequest request){
         AppUser user = AppUser.builder()
                 .fullName(request.getFullName())
                 .email(request.getEmail())
