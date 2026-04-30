@@ -4,6 +4,7 @@ import com.example.demo.dto.BookRequest;
 import com.example.demo.dto.BookResponse;
 import com.example.demo.entity.Book;
 import com.example.demo.entity.Category;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.CategoryRepository;
 import jakarta.validation.Valid;
@@ -18,7 +19,7 @@ public class BookService {
 
     public BookResponse createBook(BookRequest request) {
         Category category = categoryRepository.findById(request.getCategoryId())
-            .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + request.getCategoryId()));
 
         Book book = Book.builder()
                 .title(request.getTitle())
