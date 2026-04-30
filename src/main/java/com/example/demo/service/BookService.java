@@ -1,0 +1,38 @@
+package com.example.demo.service;
+import com.example.demo.dto.BookRequest;
+import com.example.demo.dto.BookResponse;
+import com.example.demo.entity.Book;
+import com.example.demo.entity.Category;
+import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.CategoryRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class BookService {
+    private final BookRepository bookRepository;
+    private final CategoryRepository categoryRepository;
+
+    public BookResponse createBook(BookRequest request) {
+        Category category = categoryRepository.findById(request.getCategoryId())
+            .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        Book book = Book.builder()
+                .title(request.getTitle())
+                .author(request.getAuthor())
+                .publicationYear(request.getPublicationYear())
+                .category(category)
+                .build();
+
+        Book saved =bookRepository.save(book);
+
+        return BookResponse.builder()
+                .id(saved.getId())
+                .title(saved.getTitle())
+                .author(saved.getAuthor())
+                .categoryId(category.getId())
+                .categoryName(category.getName())
+                .build();
+    }
+}

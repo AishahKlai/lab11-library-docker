@@ -28,5 +28,5 @@ public class Book {
     private Category category;
 
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
-    private List<BorrwRecords> borrwRecords = new ArrayList<>();
+    private List<BorrowRecord> borrowRecords = new ArrayList<>();
 }
